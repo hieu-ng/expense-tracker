@@ -39,6 +39,10 @@ function updateValues() {
 	money_minus.innerHTML = `$${expense}`;
 }
 
+function updateLocalStorage() {
+	localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
 function init() {
 	list.innerHTML = '';
 	transaction.forEach(addTransactionDOM);
