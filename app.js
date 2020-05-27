@@ -11,6 +11,31 @@ const localStorageTransactions = JSON.parse(localStorage.getItem('transactions')
 let transaction = localStorage.getItem('transactions') !== null ?
 	localStorageTransactions : [];
 
+function addTransaction(e) {
+	e.preventDefault();
+
+	if (text.value.trim() === '' || amount.value.trim() === '') {
+		alert('Please add a text and amount');
+	} else {
+		const transaction = {
+			id: generateID(),
+			text: text.value,
+			amount: +amount.value
+		};
+
+		transactions.push(transaction);
+
+		addTransactionDOM(transaction);
+
+		updateValues();
+
+		updateLocalStorage();
+
+		text.value = '';
+		amount.value = '';
+	}
+}
+
 function addTransactionDOM(transaction) {
 	const sign = transaction.amount < 0 ? '-' : '+';
 	const item = document.createElement('li');
