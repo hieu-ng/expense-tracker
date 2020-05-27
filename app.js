@@ -36,6 +36,14 @@ function addTransaction(e) {
 	}
 }
 
+function removeTransaction(id) {
+	transactions = transactions.filter(transaction => transaction.id !== id);
+
+	updateLocalStorage();
+
+	init();
+}
+
 function addTransactionDOM(transaction) {
 	const sign = transaction.amount < 0 ? '-' : '+';
 	const item = document.createElement('li');
