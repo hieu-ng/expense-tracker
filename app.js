@@ -6,16 +6,19 @@ const form = document.getElementById('form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 
-let transaction = undefined;
+const localStorageTransactions = JSON.parse(localStorage.getItem('transactions'));
+
+let transaction = localStorage.getItem('transactions') !== null ?
+	localStorageTransactions : [];
 
 function addTransactionDOM(transaction) {
 	const sign = transaction.amount < 0 ? '-' : '+';
-	const item = document.createElement('li')
+	const item = document.createElement('li');
 	item.classList.add(transaction.amount < 0 ? 'minus' : 'plus');
 	item.innerHTML =
 		`
 		${transaction.text} <span>${sign}${Math.abs(transaction.amount)}</span> <button class="delete-btn"></button>`;
-	list.appendChild(item)
+	list.appendChild(item);
 }
 
 function updateValues() {
@@ -38,7 +41,7 @@ function updateValues() {
 
 function init() {
 	list.innerHTML = '';
-	transaction.forEach(addTransactionDOM)
+	transaction.forEach(addTransactionDOM);
 }
 
 init();
