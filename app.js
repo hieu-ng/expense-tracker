@@ -17,3 +17,10 @@ function addTransactionDOM(transaction) {
 		${transaction.text} <span>${sign}${Math.abs(transaction.amount)}</span> <button class="delete-btn"></button>`;
 	list.appendChild(item)
 }
+
+function init() {
+	list.innerHTML = '';
+	transaction.forEach(addTransactionDOM)
+}
+
+init();
